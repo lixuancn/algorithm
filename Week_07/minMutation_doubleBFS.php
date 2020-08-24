@@ -1,5 +1,5 @@
 <?php
-//双向DFS
+//双向BFS
 class Solution {
 
     /**
