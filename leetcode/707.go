@@ -112,17 +112,3 @@ func main() {
 		head = head.Next
 	}
 }
-
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func newList(arr []int) *ListNode {
-	var nextNode *ListNode = nil
-	for i := len(arr) - 1; i >= 0; i-- {
-		node := &ListNode{Val: arr[i], Next: nextNode}
-		nextNode = node
-	}
-	return nextNode
-}
