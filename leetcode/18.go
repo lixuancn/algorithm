@@ -9,6 +9,7 @@ func fourSum(nums []int, target int) [][]int {
 	n := len(nums)
 	sort.Ints(nums)
 	res := make([][]int, 0)
+	fmt.Println(nums)
 	for i := 0; i < n; i++ {
 		if i >= 1 && nums[i-1] == nums[i] {
 			continue
@@ -43,5 +44,6 @@ func fourSum(nums []int, target int) [][]int {
 
 func main() {
 	//fmt.Println(fourSum([]int{1, 0, -1, 0, -2, 2}, 0))
-	fmt.Println(fourSum([]int{2, 2, 2, 2, 2}, 8))
+	//fmt.Println(fourSum([]int{2, 2, 2, 2, 2}, 8))
+	fmt.Println(fourSum([]int{1, -2, -5, -4, -3, 3, 3, 5}, -11))
 }
