@@ -7,8 +7,8 @@ type TreeNode struct {
 }
 
 func preorderTraversal(root *TreeNode) []int {
-	return preorderTraversal_recursion(root) //递归
-	//preorderTraversal_iteration(root) //迭代
+	//return preorderTraversal_recursion(root) //递归
+	return preorderTraversal_iteration(root) //迭代
 }
 
 func preorderTraversal_recursion(root *TreeNode) []int {
@@ -27,5 +27,21 @@ func preorderTraversal_recursion(root *TreeNode) []int {
 }
 
 func preorderTraversal_iteration(root *TreeNode) []int {
-	return nil
+	var res = make([]int, 0)
+	var stack = make([]*TreeNode, 0)
+	if root != nil {
+		stack = append(stack, root)
+	}
+	for len(stack) > 0 {
+		node := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		if node.Right != nil {
+			stack = append(stack, node.Right)
+		}
+		if node.Left != nil {
+			stack = append(stack, node.Left)
+		}
+		res = append(res, node.Val)
+	}
+	return res
 }
