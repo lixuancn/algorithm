@@ -10,7 +10,7 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func maxDepth(root *TreeNode) int {
+func minDepth(root *TreeNode) int {
 	depth := 0
 	if root == nil {
 		return depth
@@ -27,6 +27,9 @@ func maxDepth(root *TreeNode) int {
 			}
 			if node.Right != nil {
 				queue.PushBack(node.Right)
+			}
+			if node.Left == nil && node.Right == nil {
+				return depth
 			}
 		}
 	}
