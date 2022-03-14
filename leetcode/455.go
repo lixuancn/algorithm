@@ -5,6 +5,7 @@ import (
 	"sort"
 )
 
+//贪心
 func findContentChildren(g []int, s []int) int {
 	sort.Slice(g, func(i, j int) bool {
 		return g[i] > g[j]
