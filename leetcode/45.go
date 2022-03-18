@@ -3,8 +3,9 @@ package main
 import "fmt"
 
 func jump(nums []int) int {
-	return jump_1(nums) // 反向
-	return jump_1(nums) // 正向
+	return jump_1(nums)  // 贪心 反向
+	return jump_1(nums)  // 贪心 正向
+	return jump_dp(nums) // 动态规划
 }
 
 //反向
@@ -42,6 +43,26 @@ func jump_2(nums []int) int {
 	return result
 }
 
+//dp[i]表示到i点时的最小步
+func jump_dp(nums []int) int {
+	dp := make([]int, len(nums))
+	for i := 0; i < len(dp); i++ {
+		dp[i] = 10001
+	}
+	dp[0] = 0
+	for i := 1; i < len(nums); i++ {
+		for j := 0; j < i; j++ {
+			if nums[j]+j >= i {
+				//dp[i] = min(dp[i], dp[j]+1)
+				if dp[i] > dp[j]+1 {
+					dp[i] = dp[j] + 1
+				}
+			}
+		}
+	}
+	return dp[len(nums)-1]
+}
+
 func main() {
-	fmt.Println(jump([]int{2, 3, 1, 1, 4}))
+	fmt.Println(jump_dp([]int{2, 3, 1, 1, 4}))
 }
