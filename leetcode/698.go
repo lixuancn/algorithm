@@ -47,5 +47,7 @@ func canPartitionKSubsets(nums []int, k int) bool {
 func main() {
 	//fmt.Println(canPartitionKSubsets([]int{5, 5, 5, 5}, 2))
 	//fmt.Println(canPartitionKSubsets([]int{1, 5, 11, 5}, 2))
-	fmt.Println(canPartitionKSubsets([]int{4, 3, 2, 3, 5, 2, 1}, 4))
+	//fmt.Println(canPartitionKSubsets([]int{4, 3, 2, 3, 5, 2, 1}, 4))
+	//fmt.Println(canPartitionKSubsets([]int{2, 2, 2, 3, 4, 4, 4, 5, 6}, 4))
+	fmt.Println(canPartitionKSubsets([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 5, 4, 3, 2, 1}, 4))
 }
