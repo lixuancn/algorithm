@@ -8,7 +8,12 @@ type T struct {
 }
 
 func main() {
-	var t1 *T
-	var t2 *T
-	fmt.Println(t1 == t2)
+	a := make(map[int]bool, 1)
+	a[0] = false
+	A(a)
+	fmt.Println(a)
+}
+
+func A(a map[int]bool) {
+	a[0] = true
 }
