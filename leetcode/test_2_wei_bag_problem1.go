@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-//背包问题讲解的练习题
+//背包问题讲解的练习题 01背包
 //https://www.programmercarl.com/%E8%83%8C%E5%8C%85%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%8001%E8%83%8C%E5%8C%85-1.html
 //我一直在想可能需要有序，但实践发现，不需要。
 func main() {
