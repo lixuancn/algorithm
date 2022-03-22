@@ -40,6 +40,7 @@ func change_2(amount int, coins []int) int {
 	//i在内时，{1,5}和{5，1}都会有，所以是排列
 	//如果求组合数就是外层for循环遍历物品，内层for遍历背包。
 	//如果求排列数就是外层for遍历背包，内层for循环遍历物品。
+	//如果把遍历nums（物品）放在外循环，遍历target的作为内循环的话，举一个例子：计算dp[4]的时候，结果集只有 {1,3} 这样的集合，不会有{3,1}这样的集合，因为nums遍历放在外层，3只能出现在1后面！
 	for i := 0; i < len(coins); i++ {
 		for j := coins[i]; j <= amount; j++ {
 			dp[j] = dp[j] + dp[j-coins[i]]

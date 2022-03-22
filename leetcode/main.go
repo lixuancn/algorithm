@@ -8,6 +8,9 @@ type T struct {
 }
 
 func main() {
+	t1 := T{a: 1, b: "1"}
+	t2 := T{a: 1, b: "2"}
+	fmt.Println(t1 == t2)
 	a := make(map[int]bool, 1)
 	a[0] = false
 	A(a)
