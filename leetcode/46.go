@@ -15,6 +15,7 @@ func backtracking(nums, row []int, record []uint8, result *[][]int) {
 		tmp := make([]int, len(row))
 		copy(tmp, row)
 		*result = append(*result, tmp)
+		return
 	}
 	for i := 0; i < len(nums); i++ {
 		if record[i] == 1 {
