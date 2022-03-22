@@ -23,6 +23,10 @@ func backtracking(nums []int, start int, row []int, result *[][]int, used []bool
 		if i > 0 && nums[i-1] == nums[i] && used[i-1] == false {
 			continue
 		}
+		//去重也可以这么写
+		//if (i > start && nums[i] == nums[i - 1] ) {
+		//	continue;
+		//}
 		row = append(row, nums[i])
 		used[i] = true
 		backtracking(nums, i+1, row, result, used)
