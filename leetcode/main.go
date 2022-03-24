@@ -2,40 +2,29 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
-type T struct {
-	a int
-	b string
-}
-
 func main() {
-	fmt.Println(match("([()])[]{}"))
+	run(4)
 }
 
-func match(s string) bool {
-	stack := make([]uint8, 0)
-	for i := 0; i < len(s); i++ {
-		if s[i] == '(' {
-			stack = append(stack, ')')
-		} else if s[i] == '[' {
-			stack = append(stack, ']')
-		} else if s[i] == '{' {
-			stack = append(stack, '}')
-		} else {
-			//取栈第一个元素
-			c := stack[len(stack)-1]
-			//pop
-			stack = stack[:len(stack)-1]
-			if c == s[i] {
-				continue
-			} else {
-				return false
-			}
+func run(num int) {
+	c := make(chan struct{}, 4)
+	for i := 0; i < num; i++ {
+		c <- struct{}{}
+	}
+	for {
+		select {
+		case <-c:
+			go job(c)
 		}
 	}
-	if len(stack) == 0 {
-		return true
-	}
-	return false
+}
+
+func job(c chan struct{}) {
+	defer fmt.Println("job结束")
+	fmt.Println("job启动")
+	time.Sleep(1 * time.Second)
+	c <- struct{}{}
 }
