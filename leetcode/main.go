@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type T struct {
 	a int
@@ -8,15 +10,32 @@ type T struct {
 }
 
 func main() {
-	t1 := T{a: 1, b: "1"}
-	t2 := T{a: 1, b: "2"}
-	fmt.Println(t1 == t2)
-	a := make(map[int]bool, 1)
-	a[0] = false
-	A(a)
-	fmt.Println(a)
+	fmt.Println(match("([()])[]{}"))
 }
 
-func A(a map[int]bool) {
-	a[0] = true
+func match(s string) bool {
+	stack := make([]uint8, 0)
+	for i := 0; i < len(s); i++ {
+		if s[i] == '(' {
+			stack = append(stack, ')')
+		} else if s[i] == '[' {
+			stack = append(stack, ']')
+		} else if s[i] == '{' {
+			stack = append(stack, '}')
+		} else {
+			//取栈第一个元素
+			c := stack[len(stack)-1]
+			//pop
+			stack = stack[:len(stack)-1]
+			if c == s[i] {
+				continue
+			} else {
+				return false
+			}
+		}
+	}
+	if len(stack) == 0 {
+		return true
+	}
+	return false
 }

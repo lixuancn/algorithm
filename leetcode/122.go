@@ -19,7 +19,7 @@ func maxProfit(prices []int) int {
 
 //动态规划
 func maxProfit_dp(prices []int) int {
-	dp := make([][3]int, len(prices))
+	dp := make([][2]int, len(prices))
 	dp[0][0] = -prices[0] //股票
 	dp[0][1] = 0          //现金
 	for i := 1; i < len(prices); i++ {
