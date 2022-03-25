@@ -1,30 +1,28 @@
 package main
 
-import (
-	"fmt"
-	"time"
-)
+import "fmt"
 
+//输入[2, 4, 5, 1, 6 ,8 ,13]，单次循环，不是用额外空间，将偶数移动到数组尾部，且不改变奇数顺序
 func main() {
-	run(4)
+	nums := []int{1, 2, 4, 5, 1, 6, 8, 13}
+	move(nums)
+	//[5 1 13 2 4 6 8]
+	fmt.Println(nums)
 }
 
-func run(num int) {
-	c := make(chan struct{}, 4)
-	for i := 0; i < num; i++ {
-		c <- struct{}{}
-	}
-	for {
-		select {
-		case <-c:
-			go job(c)
+func move(nums []int) {
+	left, right := 0, 1
+	for right < len(nums) && left < len(nums) {
+		//如果是偶数
+		if nums[left]&1 == 0 {
+			nums[left], nums[right] = nums[right], nums[left]
+			right++
+			if nums[left]&1 != 0 {
+				left++
+			}
+		} else {
+			left++
+			right++
 		}
 	}
-}
-
-func job(c chan struct{}) {
-	defer fmt.Println("job结束")
-	fmt.Println("job启动")
-	time.Sleep(1 * time.Second)
-	c <- struct{}{}
 }
