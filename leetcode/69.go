@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+//平方根
+
 func mySqrt(x int) int {
 	if x <= 1 {
 		return x
