@@ -19,4 +19,5 @@ func recursion(nums []int, left, right int) *TreeNode {
 	root := &TreeNode{Val: nums[mid]}
 	root.Left = recursion(nums, left, mid-1)
 	root.Right = recursion(nums, mid+1, right)
+	return root
 }
