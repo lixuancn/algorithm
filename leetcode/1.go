@@ -30,6 +30,17 @@ func twoSum(nums []int, target int) []int {
 	return nil
 }
 
+func twoSum_practice(nums []int, target int) []int {
+	haved := make(map[int]int)
+	for i := 0; i < len(nums); i++ {
+		if index, ok := haved[target-nums[i]]; ok {
+			return []int{i, index}
+		}
+		haved[nums[i]] = i
+	}
+	return []int{}
+}
+
 func main() {
 	fmt.Println(twoSum([]int{3, 2, 4}, 6))
 	fmt.Println(twoSum([]int{2, 7, 11, 15}, 9))
