@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+//25. K 个一组翻转链表
+
 type ListNode struct {
 	Val  int
 	Next *ListNode
