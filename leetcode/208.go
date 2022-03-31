@@ -2,9 +2,12 @@ package main
 
 import "fmt"
 
+//208. 实现 Trie (前缀树)
+
 type Node struct {
 	char      rune
 	childList map[rune]*Node
+	isEnd     bool
 }
 
 func NewNode(char rune) *Node {
@@ -29,7 +32,7 @@ func (this *Trie) Insert(word string) {
 		}
 		parent = parent.childList[c]
 	}
-	parent.childList[0] = nil
+	parent.isEnd = true
 }
 
 func (this *Trie) Search(word string) bool {
@@ -40,7 +43,7 @@ func (this *Trie) Search(word string) bool {
 		}
 		parent = parent.childList[c]
 	}
-	if _, ok := parent.childList[0]; ok {
+	if parent.isEnd {
 		return true
 	}
 	return false
