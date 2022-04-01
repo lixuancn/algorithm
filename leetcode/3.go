@@ -44,7 +44,6 @@ func lengthOfLongestSubstring_practice(s string) int {
 			left = maxInt(left, used[s[right]])
 		}
 		used[s[right]] = right
-		fmt.Println(right, left)
 		l = maxInt(l, right-left)
 	}
 	return l
