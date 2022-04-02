@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+//24. 两两交换链表中的节点
+
 func swapPairs(head *ListNode) *ListNode {
 	dummyHead := &ListNode{Next: head}
 	cur := dummyHead
@@ -39,4 +41,23 @@ func newList(arr []int) *ListNode {
 		nextNode = node
 	}
 	return nextNode
+}
+
+func swapPairs_practice(head *ListNode) *ListNode {
+	dummyHead := &ListNode{}
+	dummyHead.Next = head
+	prev := dummyHead
+	if prev == nil {
+		return head
+	}
+	var n1, n2 *ListNode
+	for prev.Next != nil && prev.Next.Next != nil {
+		n1 = prev.Next
+		n2 = prev.Next.Next
+		n1.Next = n2.Next
+		prev.Next = n2
+		n2.Next = n1
+		prev = n1
+	}
+	return dummyHead.Next
 }
