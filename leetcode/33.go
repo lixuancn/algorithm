@@ -26,7 +26,7 @@ func search(nums []int, target int) int {
 				left = mid + 1
 			}
 		} else {
-			if nums[mid] < target && target <= nums[len(nums)-1] {
+			if nums[mid] < target && target <= nums[len(nums)-1] { //这里我觉得len(nums)-1可以换成right。上面的0同理可以换成left，不过不影响结果。
 				left = mid + 1
 			} else {
 				right = mid - 1
