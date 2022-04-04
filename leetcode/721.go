@@ -5,6 +5,9 @@ import (
 	"sort"
 )
 
+//721. 账户合并
+
+//并查集
 func accountsMerge(accounts [][]string) [][]string {
 	emailToIndex := make(map[string]int)
 	emailToName := make(map[string]string)
@@ -16,6 +19,7 @@ func accountsMerge(accounts [][]string) [][]string {
 			}
 		}
 	}
+
 	parent := make([]int, len(emailToIndex))
 	for i := range parent {
 		parent[i] = i
@@ -55,10 +59,17 @@ func union(parent []int, index1, index2 int) {
 }
 
 func main() {
+	//fmt.Println(accountsMerge([][]string{
+	//	{"John", "johnsmith@mail.com", "john00@mail.com"},
+	//	{"John", "johnnybravo@mail.com"},
+	//	{"John", "johnsmith@mail.com", "john_newyork@mail.com"},
+	//	{"Mary", "mary@mail.com"},
+	//}))
+
 	fmt.Println(accountsMerge([][]string{
-		{"John", "johnsmith@mail.com", "john00@mail.com"},
-		{"John", "johnnybravo@mail.com"},
-		{"John", "johnsmith@mail.com", "john_newyork@mail.com"},
-		{"Mary", "mary@mail.com"},
+		{"a", "1", "2"},
+		{"a", "3"},
+		{"a", "1", "4"},
+		{"b", "5"},
 	}))
 }
