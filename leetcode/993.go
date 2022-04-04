@@ -3,14 +3,6 @@
 //我们给出了具有唯一值的二叉树的根节点 root ，以及树中两个不同节点的值 x 和 y 。
 //只有与值 x 和 y 对应的节点是堂兄弟节点时，才返回 true 。否则，返回 false。
 
-/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
