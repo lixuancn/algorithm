@@ -8,6 +8,8 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+//112. 路径总和
+
 func hasPathSum(root *TreeNode, targetSum int) bool {
 	//return hasPathSum_iterator(root, targetSum)
 	return hasPathSum_dfs(root, targetSum)
