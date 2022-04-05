@@ -5,6 +5,8 @@ import (
 	"strconv"
 )
 
+//51. N 皇后
+
 var usedCol map[int]bool
 var usedPie map[int]bool
 var usedNa map[int]bool
