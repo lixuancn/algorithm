@@ -20,7 +20,7 @@ func addOperators(num string, target int) []string {
 			expr = append(expr, 0)
 		}
 		//nums[j] != 0的意思是，可以是单个0，但不能是前导0
-		for j, val := i, 0; j < n && (i == j || num[j] != 0); j++ {
+		for j, val := i, 0; j < n && (i == j || num[i] != '0'); j++ {
 			val = val*10 + int(num[j]-'0')
 			expr = append(expr, num[j])
 			if i == 0 {
@@ -41,5 +41,6 @@ func addOperators(num string, target int) []string {
 
 func main() {
 	//fmt.Println(addOperators("123", 6))
-	fmt.Println(addOperators("232", 8))
+	//fmt.Println(addOperators("232", 8))
+	fmt.Println(addOperators("105", 5))
 }
