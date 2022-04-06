@@ -13,7 +13,7 @@ type ListNode struct {
 //for _, list := range lists{
 //	merge(ans, list)
 //}
-//题解的方法二是分治，类似归并的思路，可以练习一下
+//题解的方法二是分治，对方法一做了改进，类似归并的思路，可以练习一下
 func mergeKLists(lists []*ListNode) *ListNode {
 	dummyNode := &ListNode{}
 	prev := dummyNode
