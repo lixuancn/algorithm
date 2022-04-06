@@ -2,9 +2,11 @@ package main
 
 import "fmt"
 
+//887. 鸡蛋掉落
+
 func superEggDrop(k int, n int) int {
-	return dp_force(k, n) //动态规划-暴力法
-	//return dp_mid(k, n) //动态规划-二分法 - 未完成
+	//return dp_force(k, n) //动态规划-暴力法
+	return dp_mid(k, n) //动态规划-二分法 - 未完成
 }
 
 //dp[i][j]表示一共有i层时，一共有j个鸡蛋时，确定F的最小次数。i表示的楼层总数，不是第几层，比如[7,8,9]时n为3
@@ -97,7 +99,7 @@ func dp_mid(k, n int) int {
 				if dp[mid-1][j-1] > dp[i-mid][j] {
 					right = mid - 1
 				} else {
-					left = mid + 1
+					left = mid
 				}
 			}
 			dp[i][j] = min(dp[i][j], max(dp[left-1][j-1], dp[i-left][j])+1)
