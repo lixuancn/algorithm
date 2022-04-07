@@ -10,6 +10,39 @@ type ListNode struct {
 }
 
 func reverseKGroup(head *ListNode, k int) *ListNode {
+	//return reverseKGroup_iterator(head, k)  //迭代的方式
+	return reverseKGroup_recursion(head, k) //递归的方式
+}
+
+//非常规做法 - 递归
+func reverseKGroup_recursion(head *ListNode, k int) *ListNode {
+	dummyNode := &ListNode{}
+	dummyNode.Next = head
+	recursion(dummyNode, k)
+	return dummyNode.Next
+}
+
+func recursion(prev *ListNode, k int) {
+	start, end := prev.Next, prev.Next
+	if start == nil {
+		return
+	}
+	//检测这一段是否是k个，少于k就直接结束
+	for i := 0; i < k-1 && end != nil; i++ {
+		end = end.Next
+	}
+	if end == nil {
+		return
+	}
+	next := end.Next
+	end.Next = nil             //和下一段断开
+	prev.Next = reverse(start) //翻转后，和上一段连上
+	start.Next = next          //和下一段连上
+	recursion(start, k)
+}
+
+//常规做法：迭代
+func reverseKGroup_iterator(head *ListNode, k int) *ListNode {
 	dummyNode := &ListNode{}
 	dummyNode.Next = head
 	prev, end := dummyNode, dummyNode
