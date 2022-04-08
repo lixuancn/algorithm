@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+//518. 零钱兑换 II
+
 func main() {
 	r := change(5, []int{1, 2, 5})
 	fmt.Println(r)
@@ -43,6 +45,17 @@ func change_2(amount int, coins []int) int {
 	//如果把遍历nums（物品）放在外循环，遍历target的作为内循环的话，举一个例子：计算dp[4]的时候，结果集只有 {1,3} 这样的集合，不会有{3,1}这样的集合，因为nums遍历放在外层，3只能出现在1后面！
 	for i := 0; i < len(coins); i++ {
 		for j := coins[i]; j <= amount; j++ {
+			dp[j] = dp[j] + dp[j-coins[i]]
+		}
+	}
+	return dp[amount]
+}
+
+func change_practice(amount int, coins []int) int {
+	//dp[i]表示背包容量为i时的组合数
+	dp := make([]int, amount+1)
+	for i := 0; i < len(coins); i++ {
+		for j := coins[i]; j < amount; j++ {
 			dp[j] = dp[j] + dp[j-coins[i]]
 		}
 	}
