@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+
+//300. 最长递增子序列
 
 func lengthOfLIS(nums []int) int {
 	//return lengthOfLIS_recursion(nums)
@@ -55,6 +59,36 @@ func lengthOfLIS_dp(nums []int) int {
 		}
 	}
 	return max
+}
+
+func lengthOfLIS_dp_practice(nums []int) int {
+	//dp[i]是[0,i]子数组中的最长递增子序列。有0<j<i
+	//如果nums[i] > nums[j]，则可以放入i，那么此时子序列长度是dp[j]+1
+	//如果nums[i] < nums[j]，则无法放入，跳过
+	//dp[i] = max(dp[i], dp[j]+1)
+	dp := make([]int, len(nums))
+	for i := 0; i < len(dp); i++ {
+		dp[i] = 1
+	}
+	result := 0
+	for i := 0; i < len(nums); i++ {
+		for j := 0; j <= i; i++ {
+			if nums[i] > nums[j] {
+				dp[i] = max(dp[i], dp[j]+1)
+			}
+		}
+		if result < dp[i] {
+			result = dp[i]
+		}
+	}
+	return result
+}
+
+func max(i, j int) int {
+	if i > j {
+		return i
+	}
+	return j
 }
 
 func main() {
