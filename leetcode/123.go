@@ -46,6 +46,20 @@ func maxProfit_1(prices []int) int {
 	return dp[4]
 }
 
+func maxProfit_practice(prices []int) int {
+	//dp[i][0]初始化持有现金 dp[i][1]第一次持股中 dp[i][2]第一次卖出持现金 dp[i][3]第二次持股 dp[i][4]第二次卖出后持现金
+	dp := make([][5]int, len(prices))
+	dp[0][0], dp[0][1], dp[0][2], dp[0][3], dp[0][4] = 0, -prices[0], 0, -prices[0], 0
+	for i := 1; i < len(prices); i++ {
+		dp[i][0] = dp[i-1][0]
+		dp[i][1] = max(dp[i-1][1], dp[i-1][0]-prices[i])
+		dp[i][2] = max(dp[i-1][2], dp[i-1][1]+prices[i])
+		dp[i][3] = max(dp[i-1][3], dp[i-1][2]-prices[i])
+		dp[i][4] = max(dp[i-1][4], dp[i-1][3]+prices[i])
+	}
+	return dp[len(prices)-1][4]
+}
+
 func max(i, j int) int {
 	if i > j {
 		return i
@@ -54,5 +68,6 @@ func max(i, j int) int {
 }
 
 func main() {
-	fmt.Println(maxProfit_1([]int{3, 3, 5, 0, 0, 3, 1, 4}))
+	fmt.Println(maxProfit_practice([]int{5, 4, 3, 2, 1}))
+	//fmt.Println(maxProfit_practice([]int{3, 3, 5, 0, 0, 3, 1, 4}))
 }
