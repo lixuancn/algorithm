@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+//322. 零钱兑换
+
 //零钱兑换 背包问题，物品数量不限，所以时完全背包问题，amount是背包容量。
 //因为是组合，所以外层循环物品，内层循环背包容量。不能替换位置。
 //dp[j]表示背包容量为j时，凑足j所需要的最少硬币个数
@@ -28,6 +30,25 @@ func coinChange(coins []int, amount int) int {
 		}
 	}
 	if dp[amount] == 1<<31-1 {
+		return -1
+	}
+	return dp[amount]
+}
+
+//完全背包问题
+func coinChange_practice(coins []int, amount int) int {
+	//dp[i]表示背包容量为时，填满需要的最小个数
+	dp := make([]int, amount+1)
+	for i := 0; i < len(dp); i++ {
+		dp[i] = 1 << 31
+	}
+	dp[0] = 0
+	for i := 0; i < len(coins); i++ {
+		for j := coins[i]; j < amount; i++ {
+			dp[j] = min(dp[j], dp[j-coins[i]]+1)
+		}
+	}
+	if dp[amount] == 1<<31 {
 		return -1
 	}
 	return dp[amount]
