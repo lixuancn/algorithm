@@ -62,6 +62,27 @@ func maxProfit_dp_2(prices []int) int {
 	return dp[len(prices)-1]
 }
 
+func maxProfit_dp_practice(prices []int) int {
+	//dp[i][0] 持股 dp[i][1] 持现金
+	dp := make([][2]int, len(prices))
+	dp[0][0] = -prices[0]
+	dp[0][1] = 0
+	for i := 1; i < len(prices); i++ {
+		dp[i][0] = max(dp[i-1][0], -prices[i])
+		dp[i][1] = max(dp[i-1][1], dp[i-1][0]+prices[i])
+	}
+	return dp[len(prices)-1][1]
+}
+
+func maxProfit_tanxin_practice(prices []int) int {
+	ans, minBuy := 0, prices[0]
+	for i := 1; i < len(prices); i++ {
+		minBuy = min(minBuy, prices[i])
+		ans = max(ans, prices[i]-minBuy)
+	}
+	return ans
+}
+
 func max(i, j int) int {
 	if i > j {
 		return i
