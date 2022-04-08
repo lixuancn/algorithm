@@ -5,8 +5,8 @@ import "fmt"
 //718. 最长重复子数组
 
 func findLength(nums1 []int, nums2 []int) int {
-	//return findLength_dp_1(nums1, nums2) //动态规划
-	//return findLength_dp_2(nums1, nums2) //动态规划
+	//return findLength_dp_1(nums1, nums2) //动态规划 - 初始化1
+	//return findLength_dp_2(nums1, nums2) //动态规划 - 初始化2
 	return findLength_window(nums1, nums2) //滑动窗口
 }
 
