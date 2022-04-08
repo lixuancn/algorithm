@@ -47,6 +47,28 @@ func maxProfit(k int, prices []int) int {
 	return dp[len(prices)-1][2*k]
 }
 
+func maxProfit_practice(k int, prices []int) int {
+	//dp[i][0]初始化持有现金 dp[i][1]第一次持股中 dp[i][2]第一次卖出持现金 dp[i][3]第二次持股 dp[i][4]第二次卖出后持现金
+	//奇数是持股中，偶数时持现金中
+	dp := make([][]int, len(prices))
+	for i := 0; i < len(prices); i++ {
+		dp[i] = make([]int, k*2+1)
+	}
+	dp[0][0] = 0
+	for j := 1; j <= k; j++ {
+		dp[0][j*2-1] = -prices[0]
+		dp[0][j*2] = 0
+	}
+	for i := 1; i < len(prices); i++ {
+		dp[i][0] = dp[i-1][0]
+		for j := 1; j <= k; j++ {
+			dp[i][2*j-1] = max(dp[i-1][2*j-1], dp[i-1][2*j-2]-prices[i]) //持股
+			dp[i][2*j] = max(dp[i-1][2*j], dp[i-1][2*j-1]+prices[i])     //持现金
+		}
+	}
+	return dp[len(prices)-1][2*k]
+}
+
 func max(i, j int) int {
 	if i > j {
 		return i
@@ -55,5 +77,6 @@ func max(i, j int) int {
 }
 
 func main() {
-	fmt.Println(maxProfit_1(2, []int{3, 2, 6, 5, 0, 3}))
+	fmt.Println(maxProfit_practice(2, []int{3, 2, 6, 5, 0, 3}))
+	fmt.Println(maxProfit_practice(2, []int{2, 4, 1}))
 }
