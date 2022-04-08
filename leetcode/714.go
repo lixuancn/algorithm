@@ -42,6 +42,18 @@ func maxProfit_1(prices []int, fee int) int {
 	return ret
 }
 
+func maxProfit_dp_practice(prices []int, fee int) int {
+	//dp[i][0]现金，dp[i][1]股票
+	dp := make([][2]int, len(prices))
+	dp[0][0], dp[0][1] = 0, -prices[0]-fee
+	for i := 1; i < len(prices); i++ {
+		dp[i][0] = max(dp[i-1][0], dp[i-1][1]+prices[i])
+		//这里手续费要放在买入的地方，这样才可以和初始化dp[0]的时候对应
+		dp[i][1] = max(dp[i-1][1], dp[i-1][0]-prices[i]-fee)
+	}
+	return dp[len(prices)-1][0]
+}
+
 func max(i, j int) int {
 	if i > j {
 		return i
