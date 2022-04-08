@@ -51,12 +51,12 @@ func maxUncrossedLines(nums1 []int, nums2 []int) int {
 //那么这道题可以转换为求最长公共子序列的问题。
 func maxUncrossedLines_dp_practice(nums1 []int, nums2 []int) int {
 	//dp[i][j]表示[0,i-1]和[0,j-1]的两个子数组的最长公共子序列
-	dp := make([][]int, len(nums1))
+	dp := make([][]int, len(nums1)+1)
 	for i := 0; i < len(dp); i++ {
-		dp[i] = make([]int, len(nums2))
+		dp[i] = make([]int, len(nums2)+1)
 	}
-	for i := 1; i < len(nums1); i++ {
-		for j := 1; j < len(nums2); j++ {
+	for i := 1; i <= len(nums1); i++ {
+		for j := 1; j <= len(nums2); j++ {
 			if nums1[i-1] == nums2[j-1] {
 				dp[i][j] = dp[i-1][j-1] + 1
 			} else {
@@ -64,6 +64,7 @@ func maxUncrossedLines_dp_practice(nums1 []int, nums2 []int) int {
 			}
 		}
 	}
+	return dp[len(nums1)][len(nums2)]
 }
 
 func max(a, b int) int {
