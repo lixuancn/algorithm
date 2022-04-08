@@ -2,10 +2,12 @@ package main
 
 import "fmt"
 
+//674. 最长连续递增序列
+
 func findLengthOfLCIS(nums []int) int {
-	//return findLengthOfLCIS_recursion(nums) //回溯 未成功
-	return findLengthOfLCIS_dp(nums)     //动态规划
-	return findLengthOfLCIS_tanxin(nums) //贪心
+	//return findLengthOfLCIS_recursion(nums) //回溯
+	return findLengthOfLCIS_dp_practice(nums) //动态规划
+	return findLengthOfLCIS_tanxin(nums)      //贪心
 }
 
 var max = 0
@@ -13,12 +15,13 @@ var max = 0
 func findLengthOfLCIS_recursion(nums []int) int {
 	max = 0
 	row := make([]int, 0)
-	backtracking(nums, 0, row)
+	for i := 0; i < len(nums); i++ {
+		backtracking(nums, i, row)
+	}
 	return max
 }
 
 func backtracking(nums []int, start int, row []int) bool {
-	fmt.Println(row)
 	if max < len(row) {
 		max = len(row)
 	}
@@ -54,6 +57,25 @@ func findLengthOfLCIS_dp(nums []int) int {
 	return max
 }
 
+func findLengthOfLCIS_dp_practice(nums []int) int {
+	//dp[i]表示放入nums[i]时的连续最长子序列。
+	//nums[i] > nums[i-1]时，dp[i] = dp[i-1]+1
+	result := 1
+	dp := make([]int, len(nums))
+	for i := 0; i < len(dp); i++ {
+		dp[i] = 1
+	}
+	for i := 1; i < len(nums); i++ {
+		if nums[i] > nums[i-1] {
+			dp[i] = dp[i-1] + 1
+		}
+		if dp[i] > result {
+			result = dp[i]
+		}
+	}
+	return result
+}
+
 func findLengthOfLCIS_tanxin(nums []int) int {
 	max := 1
 	count := 1
@@ -70,8 +92,27 @@ func findLengthOfLCIS_tanxin(nums []int) int {
 	return max
 }
 
+func findLengthOfLCIS_tanxin_practice(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+	result := 1
+	length := 1
+	for i := 1; i < len(nums); i++ {
+		if nums[i] > nums[i-1] {
+			length++
+		} else {
+			length = 1
+		}
+		if length > result {
+			result = length
+		}
+	}
+	return result
+}
+
 func main() {
 	fmt.Println(findLengthOfLCIS([]int{1, 3, 5, 4, 2, 3, 4, 5}))
-	//fmt.Println(findLengthOfLCIS([]int{2, 2, 2, 2}))
-	//fmt.Println(findLengthOfLCIS([]int{1, 3, 5, 4, 7}))
+	fmt.Println(findLengthOfLCIS([]int{2, 2, 2, 2}))
+	fmt.Println(findLengthOfLCIS([]int{1, 3, 5, 4, 7}))
 }
