@@ -16,8 +16,10 @@ func search(arr []int, target int) int {
 			} else if mid > 0 && arr[mid] != arr[mid-1] {
 				return mid
 			}
-		}
-		if arr[mid] < target {
+		} else if arr[left] == arr[mid] {
+
+		} else if arr[left] <= arr[mid] {
+			
 		}
 	}
 }
