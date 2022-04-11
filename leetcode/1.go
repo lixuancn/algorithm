@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+//1. 两数之和
+
 //暴力
 func twoSum_force(nums []int, target int) []int {
 	//record := make(map[int]struct{})
