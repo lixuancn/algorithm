@@ -10,6 +10,8 @@ import "fmt"
 //return 5
 //
 //时间O(n)，
+
+//dp[i]表示放入i之后的对数。 dp[i]
 func main() {
 	fmt.Println(find([]int{-3, -2, -1, 0, 1, 2, 2, 2, 3}, 5))
 }
