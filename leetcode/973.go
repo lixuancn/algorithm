@@ -41,7 +41,7 @@ func quickSelect(points [][]int, k, left, right int) {
 	}
 }
 
-//方法一 堆排序
+//方法二 堆排序
 func heapifySort(points [][]int, k int) [][]int {
 	heapSize := len(points)
 	buildMaxHeapify(points, heapSize)
