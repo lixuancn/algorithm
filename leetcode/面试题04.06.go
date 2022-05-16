@@ -6,18 +6,13 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-//面试题 04.06. 后继者
-
-func inorderSuccessor(root *TreeNode, p *TreeNode) *TreeNode {
-	return inorderSuccessor_inOrder(root, p)
-}
-
 //中序遍历
 //面试题 04.06. 后继者
 
 func inorderSuccessor(root *TreeNode, p *TreeNode) *TreeNode {
-	return inorderSuccessor_inOrder(root, p) //中序遍历
-	return inorderSuccessor_bfs(root, p)     //利用BFS特性
+	return inorderSuccessor_inOrder(root, p)          //中序遍历
+	return inorderSuccessor_inOrder_iterator(root, p) //中序遍历-迭代
+	return inorderSuccessor_bfs(root, p)              //利用BFS特性
 }
 
 //中序遍历
@@ -46,6 +41,26 @@ func inorderSuccessor_inOrder(root *TreeNode, p *TreeNode) *TreeNode {
 	}
 	dfs(root)
 	return result
+}
+
+//中序遍历-迭代
+func inorderSuccessor_inOrder_iterator(root *TreeNode, p *TreeNode) *TreeNode {
+	stack := make([]*TreeNode, 0)
+	var pre, cur *TreeNode = nil, root
+	for len(stack) > 0 || cur != nil {
+		for cur != nil {
+			stack = append(stack, cur)
+			cur = cur.Left
+		}
+		cur = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		if pre == p {
+			return cur
+		}
+		pre = cur
+		cur = cur.Right
+	}
+	return nil
 }
 
 //利用BFS的特性
